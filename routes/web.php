@@ -94,3 +94,8 @@ Route::controller(PostController::class)->group(function(){
  * section checking system
  */
 Route::view('section-checking', 'layout-check');
+
+/**
+ * *include directive check
+ */
+Route::view('include-directive', 'include-directive.body');
