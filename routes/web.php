@@ -89,3 +89,8 @@ Route::controller(PostController::class)->group(function(){
   Route::get('post', 'post')->name('post');
   Route::get('write', 'write')->name('write');
 });
+
+/**
+ * section checking system
+ */
+Route::view('section-checking', 'layout-check');
