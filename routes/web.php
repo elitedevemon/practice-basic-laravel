@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /**
@@ -79,3 +80,12 @@ Route::fallback(function(){
  * Blade template syntax
  */
 Route::view('blade-syntax', 'blade-syntax');
+
+/**
+ * Make a controller group
+ */
+Route::controller(PostController::class)->group(function(){
+  Route::get('index', 'index')->name('index');
+  Route::get('post', 'post')->name('post');
+  Route::get('write', 'write')->name('write');
+});
