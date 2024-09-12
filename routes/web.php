@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 
 /**
  * Testing parameter @param id and optional parameter @param id
@@ -99,3 +99,16 @@ Route::view('section-checking', 'layout-check');
  * *include directive check
  */
 Route::view('include-directive', 'include-directive.body');
+
+/**
+ * Send value to view using @param Array method
+ * Send value using @param with method
+ * Send value with @param keyname in method
+ */
+Route::get('post', function(){
+  $name = 'MD EMON HASSAN';
+  // return view('send-value', ['name' => $name]);
+  // return view('send-value')->with('nickname', $name);
+  return view('send-value')->withName($name);
+});
+
