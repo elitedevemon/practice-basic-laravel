@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InvokeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 
@@ -85,7 +86,7 @@ Route::view('blade-syntax', 'blade-syntax');
  * Make a controller group
  */
 Route::controller(PostController::class)->group(function(){
-  Route::get('index', 'index')->name('index');
+  Route::get('index',  'index')->name('index');
   Route::get('post', 'post')->name('post');
   Route::get('write', 'write')->name('write');
 });
@@ -111,4 +112,32 @@ Route::get('post', function(){
   // return view('send-value')->with('nickname', $name);
   return view('send-value')->withName($name);
 });
+
+/**
+ * Checking the abort_if() method
+ */
+
+
+function getName($index){
+  //variable names
+  $names = [
+    1 => ['name'=>'MD EMON HASSAN'],
+    2 => ['name'=>'ELITEDEV EMON']
+  ];
+
+  abort_if(!isset($names[$index]), 404);
+
+  // returning the name value
+  return $names[$index]['name'];
+}
+
+Route::get('name/{index}', function($index){
+  $name = getName($index);
+  return $name;
+});
+
+/**
+ * invokable controller testing
+ */
+Route::get('invokable-controller', InvokeController::class);
 
