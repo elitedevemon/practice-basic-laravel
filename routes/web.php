@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\InvokeController;
 use App\Http\Controllers\MultipleWhereController;
+use App\Http\Controllers\PaginationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 
@@ -146,3 +147,8 @@ Route::get('invokable-controller', InvokeController::class);
  * Multiple where condition check
  */
 Route::get('multiple-where-controller', MultipleWhereController::class);
+
+/**
+ * Checking pagination links
+ */
+Route::get('pagination', PaginationController::class);

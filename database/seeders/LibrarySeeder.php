@@ -13,12 +13,12 @@ class LibrarySeeder extends Seeder
    */
   public function run(): void
   {
-    for ($i=0; $i < 10; $i++) { 
+    for ($i=0; $i < 100; $i++) { 
       Library::create([
         'book_name' => fake()->randomLetter(),
         'issue_date' => fake()->dateTime(),
         'status' => true,
-        'student_id' => random_int(1, 10),
+        'student_id' => random_int(1, 100),
         'created_at' => now(),
         'updated_at' => now()
       ]);
