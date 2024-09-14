@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\InvokeController;
+use App\Http\Controllers\MultipleWhereController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 
@@ -141,3 +142,7 @@ Route::get('name/{index}', function($index){
  */
 Route::get('invokable-controller', InvokeController::class);
 
+/**
+ * Multiple where condition check
+ */
+Route::get('multiple-where-controller', MultipleWhereController::class);
