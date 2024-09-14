@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\InvokeController;
 use App\Http\Controllers\MultipleWhereController;
 use App\Http\Controllers\PaginationController;
@@ -152,3 +153,8 @@ Route::get('multiple-where-controller', MultipleWhereController::class);
  * Checking pagination links
  */
 Route::get('pagination', PaginationController::class);
+
+/**
+ * check group and join status
+ */
+Route::get('join-group', GroupController::class);
