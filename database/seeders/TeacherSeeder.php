@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Student;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Teacher;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class StudentSeeder extends Seeder
+class TeacherSeeder extends Seeder
 {
   /**
    * Run the database seeds.
@@ -14,12 +14,10 @@ class StudentSeeder extends Seeder
   public function run(): void
   {
     for ($i=0; $i < 10; $i++) { 
-      Student::create([
+      Teacher::create([
         'name' => fake()->name(),
         'email' => fake()->safeEmail(),
         'city_id' => random_int(1, 10),
-        'created_at' => now(),
-        'updated_at' => now()
       ]);
     }
   }

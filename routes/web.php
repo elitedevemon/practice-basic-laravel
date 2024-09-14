@@ -6,6 +6,7 @@ use App\Http\Controllers\MultipleWhereController;
 use App\Http\Controllers\PaginationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\TeacherController;
 
 /**
  * Testing parameter @param id and optional parameter @param id
@@ -158,3 +159,8 @@ Route::get('pagination', PaginationController::class);
  * check group and join status
  */
 Route::get('join-group', GroupController::class);
+
+/**
+ * check union for students and teachers table
+ */
+Route::get('union-data', TeacherController::class);
