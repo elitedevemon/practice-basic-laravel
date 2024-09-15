@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FormValidationController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\InvokeController;
 use App\Http\Controllers\MultipleWhereController;
@@ -114,7 +115,7 @@ Route::get('post', function(){
   $name = 'MD EMON HASSAN';
   // return view('send-value', ['name' => $name]);
   // return view('send-value')->with('nickname', $name);
-  return view('send-value')->withName($name);
+  // return view('send-value')->withName($name);
 });
 
 /**
@@ -164,3 +165,9 @@ Route::get('join-group', GroupController::class);
  * check union for students and teachers table
  */
 Route::get('union-data', TeacherController::class);
+
+/**
+ * Form validation with @param request instance
+ */
+Route::view('form-validation', 'forms.formValidation');
+Route::post('form-validation', FormValidationController::class)->name('form-validation');
