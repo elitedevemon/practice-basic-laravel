@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FormValidationController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\invokable\relationship\belongsToManyController;
 use App\Http\Controllers\invokable\relationship\hasManyController;
 use App\Http\Controllers\invokable\relationship\hasOneController;
 use App\Http\Controllers\InvokeController;
@@ -183,4 +184,6 @@ Route::prefix('relation')->group(function(): void{
   Route::get('has-one', hasOneController::class);
   # hasMany
   Route::get('has-many', hasManyController::class);
+  # belongsToMany
+  Route::get('belongs-to-many', belongsToManyController::class);
 });

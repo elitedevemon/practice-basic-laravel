@@ -18,7 +18,9 @@ class DatabaseSeeder extends Seeder
       StudentSeeder::class,
       LibrarySeeder::class,
       TeacherSeeder::class,
-      ContactSeeder::class
+      ContactSeeder::class,
+      RoleSeeder::class,
+      UserRoleSeeder::class
     ]);
 
     // User::factory()->create([
