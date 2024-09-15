@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 
 class Student extends Model
 {
@@ -29,5 +30,23 @@ class Student extends Model
    */
   public function role(): BelongsToMany{
     return $this->belongsToMany(Role::class, 'user_roles');
+  }
+  
+  /**
+   * Method schoolPhoneNumber
+   * relation with @var school_contacts table through @var schools table
+   * @return HasOneThrough
+   */
+  public function schoolPhoneNumber(): HasOneThrough{
+    return $this->hasOneThrough(SchoolContacts::class, School::class);
+  }
+  
+  /**
+   * Method school
+   * One to One relation with @var schools table
+   * @return HasOne
+   */
+  public function school(): HasOne{
+    return $this->hasOne(School::class);
   }
 }

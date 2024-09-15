@@ -5,6 +5,7 @@ use App\Http\Controllers\GroupController;
 use App\Http\Controllers\invokable\relationship\belongsToManyController;
 use App\Http\Controllers\invokable\relationship\hasManyController;
 use App\Http\Controllers\invokable\relationship\hasOneController;
+use App\Http\Controllers\invokable\relationship\hasOneThroughController;
 use App\Http\Controllers\InvokeController;
 use App\Http\Controllers\MultipleWhereController;
 use App\Http\Controllers\PaginationController;
@@ -186,4 +187,6 @@ Route::prefix('relation')->group(function(): void{
   Route::get('has-many', hasManyController::class);
   # belongsToMany
   Route::get('belongs-to-many', belongsToManyController::class);
+  #hasOneThrough
+  Route::get('has-one-through', hasOneThroughController::class);
 });
