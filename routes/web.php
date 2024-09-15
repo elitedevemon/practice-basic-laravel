@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\FormValidationController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\invokable\relationship\hasManyController;
+use App\Http\Controllers\invokable\relationship\hasOneController;
 use App\Http\Controllers\InvokeController;
 use App\Http\Controllers\MultipleWhereController;
 use App\Http\Controllers\PaginationController;
@@ -171,3 +173,14 @@ Route::get('union-data', TeacherController::class);
  */
 Route::view('form-validation', 'forms.formValidation');
 Route::post('form-validation', FormValidationController::class)->name('form-validation');
+
+/**
+ * Relationship controller
+ */
+
+Route::prefix('relation')->group(function(): void{
+  # hasOne
+  Route::get('has-one', hasOneController::class);
+  # hasMany
+  Route::get('has-many', hasManyController::class);
+});
