@@ -23,8 +23,8 @@ class Teacher extends Model
    * morph relation with @var comment table
    * @return MorphOne
    */
-  public function comment(): MorphOne{
-    return $this->morphOne(Comment::class, 'commentable');
+  public function comment(): MorphMany{
+    return $this->morphMany(Comment::class, 'commentable');
   }
   
   /**
@@ -43,5 +43,14 @@ class Teacher extends Model
    */
   public function post(): MorphMany{
     return $this->morphMany(Post::class, 'postable');
+  }
+  
+  /**
+   * Method reply
+   * create relation with @var replies table
+   * @return MorphMany
+   */
+  public function reply(): MorphMany{
+    return $this->morphMany(Reply::class, 'replyable');
   }
 }

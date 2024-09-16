@@ -28,7 +28,16 @@ class morphToController extends Controller
     //     return $th;
     //   }
     // }
-    $student = Student::findOrFail(2);
-    return $student->comment->delete();
+    // $student = Student::findOrFail(2);
+    // return $student->comment->delete();
+
+    // $student = Student::findOrFail(2);
+    // $post = $student->post()->findOrFail(2);
+    // return $post->comment;
+    $student = Student::findOrFail(1);
+    $post = $student->post()->comment()->create([
+      'title' => fake()->words(3, true),
+      'post' => fake()->paragraphs(2, true)
+    ]);
   }
 }

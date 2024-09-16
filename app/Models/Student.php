@@ -78,4 +78,13 @@ class Student extends Model
   public function post(): MorphMany{
     return $this->morphMany(Post::class, 'postable');
   }
+  
+  /**
+   * Method reply
+   * create relation with @var replies table
+   * @return MorphMany
+   */
+  public function reply(): MorphMany{
+    return $this->morphMany(Reply::class, 'replyable');
+  }
 }
