@@ -40,4 +40,19 @@ class Post extends Model
   public function comment(): MorphMany{
     return $this->morphMany(Comment::class, 'commentable');
   }
+  
+  /**
+   * Method booted
+   * this is lifecycle method
+   * @return void
+   */
+  // protected static function booted(): void
+  // {
+  //   self::creating(function($post){
+  //     echo "post creating";
+  //   });
+  //   self::created(function(){
+  //     echo "post created";
+  //   });
+  // }
 }

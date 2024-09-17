@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FormValidationController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\invokable\events\modelEventControl;
 use App\Http\Controllers\invokable\relationship\belongsToManyController;
 use App\Http\Controllers\invokable\relationship\hasManyController;
 use App\Http\Controllers\invokable\relationship\hasOneController;
@@ -201,4 +202,12 @@ Route::prefix('relation')->group(function(): void{
 Route::prefix('relation-resource')->group(function(): void{
   #morphTo & morphOne
   Route::resource('morph-to', morphToResourceController::class);
+});
+
+/**
+ * Model events and observers route
+ */
+Route::prefix('events-observers')->group(function(){
+  #model events
+  Route::get('model-events', modelEventControl::class);
 });

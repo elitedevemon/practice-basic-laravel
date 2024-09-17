@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Post;
+use App\Observers\PostObserver;
 use Illuminate\Pagination\Paginator as PaginationPaginator;
 use Illuminate\Support\ServiceProvider;
 
@@ -21,5 +23,6 @@ class AppServiceProvider extends ServiceProvider
   public function boot(): void
   {
     PaginationPaginator::useBootstrapFive();
+    Post::observe(PostObserver::class);
   }
 }
