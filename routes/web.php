@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\component\checkComponentController;
 use App\Http\Controllers\FormValidationController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\invokable\events\modelEventControl;
@@ -16,36 +17,40 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\resource\relationship\morphToResourceController;
 use App\Http\Controllers\TeacherController;
 
+Route::get('/', function () {
+  return view('welcome');
+});
+
 /**
  * Testing parameter @param id and optional parameter @param id
  * TODO: passing  the "?" sign to make the parameter optional
  */
-Route::get('welcome/{id?}', function ($id=null) {
-    if($id){
-      return $id;
-    }
-    return "There have nothing to show. No ID found";
+Route::get('welcome/{id?}', function ($id = null) {
+  if ($id) {
+    return $id;
+  }
+  return "There have nothing to show. No ID found";
 });
 
 /**
  * Route parameter type selection @param id
  * TODO: use the whereNumber method to select the parameter type to a number
  */
-Route::get('parameter-type-number/{id}', function($id = null){
+Route::get('parameter-type-number/{id}', function ($id = null) {
   return $id;
 })->whereNumber('id');
 
 /** 
  * TODO: use the whereAlpha method to select the parameter type to a alphabet
  */
-Route::get('/parameter-type-alpha/{string}', function(string $string){
+Route::get('/parameter-type-alpha/{string}', function (string $string) {
   return $string;
 })->whereAlpha('string');
 
 /** 
  * TODO: use the whereAlphaNumeric method to select the parameter type to both alphabet and numeric
  */
-Route::get('/parameter-type-alpha-numeric/{string}', function(string $string){
+Route::get('/parameter-type-alpha-numeric/{string}', function (string $string) {
   return $string;
 })->whereAlphaNumeric('string');
 
@@ -53,7 +58,7 @@ Route::get('/parameter-type-alpha-numeric/{string}', function(string $string){
 /** 
  * TODO: use the whereIn method to select the parameter from the array return value
  */
-Route::get('/parameter-type-from-array/{array}', function(string $string){
+Route::get('/parameter-type-from-array/{array}', function (string $string) {
   if ($string === 'name' || $string === 'email') {
     return 'EliteDev Emon';
   }
@@ -62,7 +67,7 @@ Route::get('/parameter-type-from-array/{array}', function(string $string){
 /** 
  * TODO: use the where method to select the parameter from the regular expression
  */
-Route::get('regex/{regex}', function(string $string){
+Route::get('regex/{regex}', function (string $string) {
   return $string;
 })->where('regex', '[0-9a-zA-Z]+@gmail.com');
 
@@ -76,16 +81,18 @@ Route::redirect('parameter-type-from-regex/{regex}', 'regex/{regex}', 301);
  * Route group with prefix
  */
 Route::prefix('post')->group(function () {
-    Route::get('about', function(){
-      return "This is about route";
-    });
-    Route::get('contact', function(){return "This is contact route";});
+  Route::get('about', function () {
+    return "This is about route";
+  });
+  Route::get('contact', function () {
+    return "This is contact route";
+  });
 });
 
 /**
  * Fallback route
  */
-Route::fallback(function(){
+Route::fallback(function () {
   return "<h1>Page not found.</h1>";
 });
 
@@ -97,7 +104,7 @@ Route::view('blade-syntax', 'blade-syntax');
 /**
  * Make a controller group
  */
-Route::controller(PostController::class)->group(function(){
+Route::controller(PostController::class)->group(function () {
   Route::get('index',  'index')->name('index');
   Route::get('post', 'post')->name('post');
   Route::get('write', 'write')->name('write');
@@ -118,7 +125,7 @@ Route::view('include-directive', 'include-directive.body');
  * Send value using @param with method
  * Send value with @param keyname in method
  */
-Route::get('post', function(){
+Route::get('post', function () {
   $name = 'MD EMON HASSAN';
   // return view('send-value', ['name' => $name]);
   // return view('send-value')->with('nickname', $name);
@@ -130,11 +137,12 @@ Route::get('post', function(){
  */
 
 
-function getName($index){
+function getName($index)
+{
   //variable names
   $names = [
-    1 => ['name'=>'MD EMON HASSAN'],
-    2 => ['name'=>'ELITEDEV EMON']
+    1 => ['name' => 'MD EMON HASSAN'],
+    2 => ['name' => 'ELITEDEV EMON']
   ];
 
   abort_if(!isset($names[$index]), 404);
@@ -143,7 +151,7 @@ function getName($index){
   return $names[$index]['name'];
 }
 
-Route::get('name/{index}', function($index){
+Route::get('name/{index}', function ($index) {
   $name = getName($index);
   return $name;
 });
@@ -183,7 +191,7 @@ Route::post('form-validation', FormValidationController::class)->name('form-vali
  * Relationship controller
  */
 
-Route::prefix('relation')->group(function(): void{
+Route::prefix('relation')->group(function (): void {
   # hasOne
   Route::get('has-one', hasOneController::class);
   # hasMany
@@ -199,7 +207,7 @@ Route::prefix('relation')->group(function(): void{
 /**
  * Relationship resource controller
  */
-Route::prefix('relation-resource')->group(function(): void{
+Route::prefix('relation-resource')->group(function (): void {
   #morphTo & morphOne
   Route::resource('morph-to', morphToResourceController::class);
 });
@@ -207,7 +215,17 @@ Route::prefix('relation-resource')->group(function(): void{
 /**
  * Model events and observers route
  */
-Route::prefix('events-observers')->group(function(){
+Route::prefix('events-observers')->group(function () {
   #model events
   Route::get('model-events', modelEventControl::class);
 });
+
+/**
+ * create the custom component system
+ */
+Route::get('view-component', [checkComponentController::class, 'index'])->name('view-component');
+
+/**
+ * check tailwindcss
+ */
+Route::view('tailwindcss', 'Tailwindcss.tailwindcss');

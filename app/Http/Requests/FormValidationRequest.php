@@ -22,10 +22,22 @@ class FormValidationRequest extends FormRequest
    */
   public function rules(): array
   {
+    /**
+     * here have strong password regular expression
+     *! no case sensitive
+     *! minimum 1 letter capital
+     *! minimum one alphabet
+     *! minimum one number
+     *! minimum one special character
+     *! minimum 8 character
+     *! no spaces
+     *! no html codes or scripts tags
+     *! very strong password algorithm
+     */
     return [
       'name' => 'required|regex:/[a-zA-Z]/',
       'email' => 'required|email:rfc,dns,spoof,filter',
-      'password' => ['required', Password::min(8)->letters()->mixedCase()->numbers()->symbols()]
+      'password' => 'required|confirmed|regex:/^(?!.*\s)(?!.*<.*?>)(?=.*[a-zA-Z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/' //strong password regular expression
     ];
   }
 
@@ -40,6 +52,7 @@ class FormValidationRequest extends FormRequest
       'name.required' => 'Name :attribute is required',
       'email.required' => 'Email is required',
       'email.email' => 'You have to put a valid email address',
+      'password.regex' => "1. At least one uppercase character <br/> 2. At least one number <br/> 3. At least one special character"
     ];
   }
 
