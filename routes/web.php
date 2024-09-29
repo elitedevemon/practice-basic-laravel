@@ -14,6 +14,8 @@ Route::get('test-schedule', function(){
   return 'Schedule work running';
 });
 
+Route::view('custom-directive', 'custom-blade-directive');
+
 Route::get('check', function(){
   return "checking successfully";
 });

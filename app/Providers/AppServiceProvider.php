@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Post;
 use App\Observers\PostObserver;
 use Illuminate\Pagination\Paginator as PaginationPaginator;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
