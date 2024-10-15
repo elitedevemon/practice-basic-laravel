@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CurlLoginController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +20,10 @@ Route::view('custom-directive', 'custom-blade-directive');
 Route::get('check', function(){
   return "checking successfully";
 });
+
+Route::get('curl-login', CurlLoginController::class);
+
+Route::view('check-javascript-code', 'testJavaScriptCode');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
